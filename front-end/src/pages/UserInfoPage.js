@@ -13,15 +13,25 @@ export const UserInfoPage = () => {
   const hairColorOptions = ["Brown", "Black", "Blonde", "Red", "Grey", "Other"];
   const favoriteFoodOptions = ["Italian", "Mexican", "Chinese"];
   const majorOptions = ["Computer Science", "Arts", "Business"];
+  const sportsOptions = ["Football", "Basketball", "Tennis", "Swimming"];
+  const ethnicityOptions = [
+    "Caucasian",
+    "African American",
+    "Asian",
+    "Hispanic",
+    "Other",
+  ];
 
   // Local component state for user info, allowing updates within this component
   const [userInfo, setUserInfo] = useState({
     favoriteFood: initialUser?.info?.favoriteFood || "",
     hairColor: initialUser?.info?.hairColor || "",
     major: initialUser?.info?.major || "",
+    sports: initialUser?.info?.sports || "",
+    ethnicity: initialUser?.info?.ethnicity || "",
   });
 
-  const { favoriteFood, hairColor, major } = userInfo;
+  const { favoriteFood, hairColor, major, sports, ethnicity } = userInfo;
 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -91,6 +101,8 @@ export const UserInfoPage = () => {
       favoriteFood: initialUser?.info?.favoriteFood || "",
       hairColor: initialUser?.info?.hairColor || "",
       major: initialUser?.info?.major || "",
+      sports: initialUser?.info?.sports || "",
+      ethnicity: initialUser?.info?.ethnicity || "",
     });
   };
 
@@ -143,6 +155,34 @@ export const UserInfoPage = () => {
           {majorOptions.map((major) => (
             <option key={major} value={major.toLowerCase()}>
               {major}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Sports:
+        <select
+          name="sports"
+          onChange={handleInputChange}
+          value={sports.toLowerCase()}
+        >
+          {sportsOptions.map((sport) => (
+            <option key={sport} value={sport.toLowerCase()}>
+              {sport}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Ethnicity:
+        <select
+          name="ethnicity"
+          onChange={handleInputChange}
+          value={ethnicity.toLowerCase()}
+        >
+          {ethnicityOptions.map((ethnicity) => (
+            <option key={ethnicity} value={ethnicity.toLowerCase()}>
+              {ethnicity}
             </option>
           ))}
         </select>
