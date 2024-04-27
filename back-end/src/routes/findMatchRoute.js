@@ -42,13 +42,15 @@ export const findMatchRoute = {
         if (!user) return res.status(404).json({ message: "User not found" });
 
         // Implement the matching algorithm here
-        // Example: find users with the same favorite food, hair color, and major
+        // Include additional criteria for sports and ethnicity
         const matches = await db
           .collection("users")
           .find({
             "info.favoriteFood": user.info.favoriteFood,
             "info.hairColor": user.info.hairColor,
             "info.major": user.info.major,
+            "info.sports": user.info.sports, // Include sports criteria
+            "info.ethnicity": user.info.ethnicity, // Include ethnicity criteria
             _id: { $ne: ObjectID(id) }, // Exclude the current user
           })
           .toArray();
